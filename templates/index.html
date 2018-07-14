@@ -9,5 +9,9 @@
 {% for single_question in questions %}
     <li><a href="/vote_page/{{ single_question.id }}/">{{ single_question.question_text }}</a></li>
 {% endfor %}
+
+<p>
+    <a href="/logout/">LOGOUT</a>
+</p>
 </body>
 </html>
