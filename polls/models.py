@@ -8,6 +8,7 @@
 """
 
 from django.db import models
+from django.contrib.auth.models import User
 
 __author__ = 'knktc'
 __version__ = '0.1'
@@ -39,3 +40,10 @@ class Choice(BaseModel):
 
     class Meta:
         unique_together = ('question', 'choice_text',)
+
+
+class VoteRecord(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice = models.ForeignKey(Choice, on_delete=models.CASCADE)
+    vote_time = models.DateTimeField(auto_now_add=True)
