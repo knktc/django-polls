@@ -23,7 +23,7 @@ class BaseModel(models.Model):
 
 
 class Question(BaseModel):
-    question_text = models.TextField(verbose_name='question')
+    question_text = models.CharField(max_length=256, verbose_name='question')
 
     def __str__(self):
         return self.question_text
