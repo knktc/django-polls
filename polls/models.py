@@ -23,7 +23,7 @@ class BaseModel(models.Model):
 
 
 class Question(BaseModel):
-    question_text = models.CharField(max_length=256, verbose_name='question')
+    question_text = models.CharField(unique=True, max_length=256, verbose_name='question')
 
     def __str__(self):
         return self.question_text
@@ -32,7 +32,10 @@ class Question(BaseModel):
 class Choice(BaseModel):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=256)
+    enable = None
 
     def __str__(self):
         return self.choice_text
 
+    class Meta:
+        unique_together = ('question', 'choice_text',)
