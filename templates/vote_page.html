@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VotePage</title>
+</head>
+<body>
+<h1>{{ question.question_text }}</h1>
+{% for single_choice in choices %}
+    {{ single_choice }}
+{% endfor %}
+
+<form action="/vote/{{ question.id }}/" method="post">
+    {% csrf_token %}
+    {% for single_choice in choices %}
+  <input type="radio" name="choice" value="{{ single_choice.id }}"> {{ single_choice }} <br>
+    {% endfor %}
+  <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>

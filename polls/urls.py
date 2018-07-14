@@ -27,5 +27,6 @@ urlpatterns = [
 
     # index
     path('', vote.polls_page),
+    path('vote_page/<int:id>/', vote.vote_page),
 
 ]
