@@ -74,9 +74,11 @@ def vote_action(request, **kwargs):
         raise Http404('question id does not exist')
 
     # check vote record
-    record = VoteRecord.objects.filter(question=question_obj, user=user_obj).order_by('-vote_time')[0]
-    if record and (timezone.now() - record.vote_time).seconds < settings.VOTE_INTERVAL:
-        return HttpResponseForbidden('vote limit exceeded')
+    record = VoteRecord.objects.filter(question=question_obj, user=user_obj).order_by('-vote_time')
+    if record:
+        latest_record = record[0]
+        if (timezone.now() - latest_record.vote_time).seconds < settings.VOTE_INTERVAL:
+            return HttpResponseForbidden('vote limit exceeded')
 
     # check choice
     try:
