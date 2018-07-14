@@ -121,3 +121,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 LOGIN_URL = '/login_page/'
+
+# custom config starts here
+# vote time interval(in seconds)
+VOTE_INTERVAL = 15
