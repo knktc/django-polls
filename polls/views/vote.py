@@ -30,9 +30,10 @@ def polls_page(request):
     :return:
     :rtype:
     """
+    user_obj = request.user
     questions = Question.objects.filter(enable=True).order_by('-update_time')
 
-    return render(request, 'index.html', {'questions': questions})
+    return render(request, 'index.html', {'questions': questions, 'user': user_obj})
 
 
 @login_required

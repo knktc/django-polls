@@ -12,6 +12,9 @@
 
 <p>
     <a href="/logout/">LOGOUT</a>
+    {% if user.is_staff %}
+     or <a href="/admin/">GO TO ADMIN</a>
+    {% endif %}
 </p>
 </body>
 </html>
