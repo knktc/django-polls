@@ -18,4 +18,14 @@ class BaseModel(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
 
+    class Meta:
+        abstract = True
 
+
+class Question(BaseModel):
+    question = models.TextField(verbose_name='question')
+
+
+class Choice(BaseModel):
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=256)
