@@ -23,9 +23,16 @@ class BaseModel(models.Model):
 
 
 class Question(BaseModel):
-    question = models.TextField(verbose_name='question')
+    question_text = models.TextField(verbose_name='question')
+
+    def __str__(self):
+        return self.question_text
 
 
 class Choice(BaseModel):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     choice_text = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.choice_text
+
