@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vote Result</title>
+    <style>
+        table, th, td {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+<h1>{{ question }}</h1>
+<table>
+    <thead>
+    <tr>
+        <th>CHOICE</th>
+        <th>VOTES</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for choice, votes in result.items %}
+        <tr>
+            <td>{{ choice }}</td>
+            <td style='text-align:right;'>
+                {{ votes }}
+            </td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+</body>
+</html>

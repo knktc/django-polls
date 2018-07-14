@@ -29,4 +29,5 @@ urlpatterns = [
     path('', vote.polls_page),
     path('vote_page/<int:id>/', vote.vote_page),
     path('vote/<int:id>/', vote.vote_action),
+    path('vote_result/<int:id>/', vote.vote_result_page),
 ]

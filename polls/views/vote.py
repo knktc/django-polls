@@ -15,6 +15,7 @@ from polls.models import Question, Choice, VoteRecord
 from django.core.exceptions import ObjectDoesNotExist
 from django.conf import settings
 from django.utils import timezone
+from django.db.models import Count
 
 
 __author__ = 'knktc'
@@ -91,15 +92,44 @@ def vote_action(request, **kwargs):
     record = VoteRecord(question=question_obj, user=user_obj, choice=choice_obj)
     record.save()
 
-    return redirect('/')
+    return redirect('/vote_result/{}/'.format(question_id))
 
 
 @login_required
-def vote_result_page(request):
+def vote_result_page(request, **kwargs):
     """
     show vote stat
     :param :
     :return:
     :rtype:
     """
-    pass
+    question_id = kwargs.get('id')
+
+    # get question
+    try:
+        question_obj = Question.objects.get(id=question_id)
+    except ObjectDoesNotExist:
+        raise Http404('question id does not exist')
+
+    # get choices
+    choices = Choice.objects.filter(question=question_obj)
+
+    # get vote records
+    vote_records = VoteRecord.objects.filter(question=question_obj).\
+        values('choice__choice_text').\
+        annotate(total_votes=Count('choice__choice_text')).order_by('-total_votes')
+
+    # format result
+    result = {}
+    for single_record in vote_records:
+        result.update({single_record.get('choice__choice_text'): single_record.get('total_votes')})
+
+    # append other info
+    for single_choice in choices:
+        choice_text = single_choice.choice_text
+        if choice_text in result:
+            pass
+        else:
+            result.update({choice_text: 0})
+    print(result)
+    return render(request, 'vote_result.html', {'question': question_obj, 'result': result})
