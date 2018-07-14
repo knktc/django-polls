@@ -81,6 +81,7 @@
     </div>
 {% endif %}
 <form action="/login/" method="post">
+    {% csrf_token %}
     <div class="container">
         <label for="uname"><b>Username</b></label>
         <input type="text" placeholder="Enter Username" name="username" required>

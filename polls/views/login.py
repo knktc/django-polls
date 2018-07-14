@@ -8,8 +8,7 @@
 """
 
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render_to_response, redirect
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render_to_response, redirect, render
 
 __author__ = 'knktc'
 __version__ = '0.1'
@@ -22,10 +21,9 @@ def login_page(request):
     :return:
     :rtype:
     """
-    return render_to_response('login.html')
+    return render(request, 'login.html')
 
 
-@csrf_exempt
 def login_action(request):
     """
     log the user in
@@ -42,7 +40,7 @@ def login_action(request):
         login(request, user)
         return redirect('/')
     else:
-        return render_to_response('login.html', context={'login_failed': True})
+        return render(request, 'login.html', {'login_failed': True})
 
 
 def logout_action(request):
