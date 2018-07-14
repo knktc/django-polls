@@ -8,7 +8,7 @@
 """
 
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render_to_response, redirect, render
+from django.shortcuts import redirect, render
 
 __author__ = 'knktc'
 __version__ = '0.1'

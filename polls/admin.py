@@ -9,6 +9,7 @@
 """
 
 from django.contrib import admin
+
 from polls.models import Question, Choice
 
 __author__ = 'knktc'

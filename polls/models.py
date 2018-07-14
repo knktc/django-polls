@@ -7,8 +7,8 @@
 @create:2018-07-14 16:38
 """
 
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
 
 __author__ = 'knktc'
 __version__ = '0.1'

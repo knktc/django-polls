@@ -8,15 +8,15 @@
 @create:2018-07-14 17:18
 """
 
+from django.conf import settings
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Count
 from django.http import Http404, HttpResponseBadRequest, HttpResponseForbidden
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from polls.models import Question, Choice, VoteRecord
-from django.core.exceptions import ObjectDoesNotExist
-from django.conf import settings
 from django.utils import timezone
-from django.db.models import Count
 
+from polls.models import Question, Choice, VoteRecord
 
 __author__ = 'knktc'
 __version__ = '0.1'
