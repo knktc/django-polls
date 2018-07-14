@@ -7,8 +7,8 @@
 @create:2018-07-14 17:18
 """
 
-from django.shortcuts import render_to_response, redirect
 from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render_to_response, redirect
 from django.views.decorators.csrf import csrf_exempt
 
 __author__ = 'knktc'
@@ -43,3 +43,15 @@ def login_action(request):
         return redirect('/')
     else:
         return render_to_response('login.html', context={'login_failed': True})
+
+
+def logout_action(request):
+    """
+    log out
+    :param :
+    :return:
+    :rtype:
+    """
+    logout(request)
+    return redirect('/login_page/')
+
