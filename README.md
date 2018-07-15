@@ -2,6 +2,8 @@
 
 ## About This APP
 
+Yet another app for <https://docs.djangoproject.com/en/2.0/intro/tutorial01/>
+
 This is a polls management platform built on the Django Web Framework with a vote rate limiter.
 
 ## Requirements
