@@ -38,7 +38,6 @@ source polls_venv/bin/active
 Install requirements:
 
 ```
-cd polls
 pip install -r requirements.txt
 ```
 
