@@ -124,4 +124,4 @@ LOGIN_URL = '/login_page/'
 
 # custom config starts here
 # vote time interval(in seconds)
-VOTE_INTERVAL = 15
+VOTE_INTERVAL = 60 * 60 * 24
