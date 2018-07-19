@@ -134,5 +134,4 @@ def vote_result_page(request, **kwargs):
             pass
         else:
             result.update({choice_text: 0})
-    print(result)
     return render(request, 'vote_result.html', {'question': question_obj, 'result': result})
